@@ -17,8 +17,8 @@ if ~exist('solver','var'); solver = []; end
 %-- Compute credence, fit, and Bayes factor ------------------------------%
 % Initially meshing the domain of (lambda, alpha ) to roughly find the 
 % location of global extremum of B
-lambda = logspace(log10(span1(1)),log10(span1(1)),3);
-alpha =  logspace(log10(span2(1)),log10(span2(1)),3);
+lambda = logspace(log10(span1(1)),log10(span1(2)),4);
+alpha =  logspace(log10(span2(1)),log10(span2(2)),4);
 [lambda_mat,alpha_mat] = meshgrid(lambda,alpha);
 param = [lambda_mat(:),alpha_mat(:)]; % set of lambda and alpha to consider
 x_length = size(A,2);
@@ -47,7 +47,7 @@ for ii=length(param):-1:1 % reverse loop to pre-allocate
 end
 
 %-- Record a rough estimate of the solution --%
-[~,ind_min] = max([output.B]); % get optimal w.r.t. Bayes factor
+[~,ind_min] = max([out.B]); % get optimal w.r.t. Bayes factor
 out(1).ind_min = ind_min;
 %-------------------------------------------------------------------------%
 
